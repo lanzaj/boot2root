@@ -133,7 +133,7 @@ Finally we did : `https://192.168.56.3/forum/templates_c/c.php?cmd=cat+/home/LOO
 `lmezard:G!@M6f4Eatau{sF"`
 - Ok, we now have a new user/password combination, which allows us to login in the virtual machine.
 
-## 6 - Fun challenge
+## 6 - lmezard's fun challenge
 - On the home of user lmezard, we found a README telling us to `complete this little challenge and use the result as password for user 'laurie' to login in ssh`.
 - Next to it, a file called "fun", which was in fact a tar archive : \
 ```
@@ -165,4 +165,53 @@ fun: POSIX tar archive (GNU)
 
 - We first thought of `Ihatepwnage` which was already geeky enough for 42 school but were left with a "r", then we understood it was in fact `Iheartpwnage`, a string we gave to SHA-256 to get laurie's password which would finally allow us to login to our server through SSH with `ssh laurie@192.168.56.3 -p 22` : `330b845f32185747e4f8ca15d40ca59796035c89ea809fb5d30f4da83ecf45a4`
 
-## 7 - Bomb challenge
+## 7 - Laurie's bomb challenge
+
+- On laurie's home folder, there's a `README` : 
+```
+laurie@BornToSecHackMe:~$ cat README 
+Diffuse this bomb!
+When you have all the password use it as "thor" user with ssh.
+
+HINT:
+P
+ 2
+ b
+
+o
+4
+
+NO SPACE IN THE PASSWORD (password is case sensitive).
+```
+- ...and a binary executable called `bomb` which asks us to resolve 6 problems which we got through by decompiling the program with hex-rays and trying to understand the 6 steps to give a correct input that would defuse the bomb and correspond to the 6 hints given in the readme. Please check `resources` folder to see an approximate version of the decompiled program as well as our solver for phase 5. For phase 6, we also used chatGPT's help by asking it which set of numbers would satisfy the requirements of the function... Here's our final result :
+```
+laurie@BornToSecHackMe:~$ ./bomb 
+Welcome this is my little bomb !!!! You have 6 stages with
+only one life good luck !! Have a nice day!
+Public speaking is very easy.
+Phase 1 defused. How about the next one?
+1 2 6 24 120 720
+That's number 2.  Keep going!
+1 b 214
+Halfway there!
+9
+So you got that one.  Try this one.
+opekmq
+Good work!  On to the next...
+4 2 6 3 1 5
+Congratulations! You've defused the bomb!
+```
+- By combining all these passwords in a single string, we were able to login as thor:
+```
+$ ssh thor@192.168.56.4 -p 22
+password : Publicspeakingisveryeasy.126241207201b2149opekmq426135
+```
+
+ - ### Important notice for this step:
+ We had some troubles to figure out a few things, which made us go and check on slack for some more hints. Those hints were completely necessary and some of them were not specified by the subject:
+- 1 - The 4th and 5th numbers in the last phase need to be reversed, which is okay since the subject specifies it
+- 2 - For the 5th phase, the string "opekma" was the one we initially found, it also works to defuse the bomb and complies with the hint, so we could've spent much time on this with no other possible way to solve the puzzle than go and ask for help on slack/discord...
+- 3 - Same for the 3rd phase, there are several possibilities to pass the phase while complying with the hint, good thing the first one we tried was the right one...
+
+## 8 - Thor's turtle challenge
+- Here we have another `README` that basically tell us that solving this challenge will give us zaz's password, and a program called `turtle` that prints hundreds of instructions to... move a turtle ?
