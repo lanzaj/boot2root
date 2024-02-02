@@ -1,4 +1,4 @@
-- We used `ifconfig` to find the address :
+- After booting the VM, we used `ifconfig` to find the network address address :
 ``` console
 $ ifconfig
 [...]
@@ -44,7 +44,7 @@ Nmap done: 255 IP addresses (2 hosts up) scanned in 3.00 seconds
 
 - We can see our server's address is `192.168.56.3` and notice it listens on different ports with a http(s) server, an ssh service and a ftp service.
 
-- So our first idea was to try and reach the website hosted on the server. To do so, we used dirsearch:
+- So our first idea was to try and reach the website(s) hosted on the server. To do so, we used dirsearch:
 
 ```
  $ git clone https://github.com/maurosoria/dirsearch.git --depth 1
@@ -79,3 +79,16 @@ Oct 5 08:45:29 BornToSecHackMe sshd[7547]: Failed password for invalid user !q\]
 With this password we can connect to the session of lmezard on the forum.
 On his profile we can find her email address :
 `laurie@borntosec.net`
+
+- Using this email address and the same password, we could login to her mailbox on route `/webmail`
+
+- There we found the root password for the database :
+
+```
+Hey Laurie,
+
+You cant connect to the databases now. Use root/Fg-'kKXBj87E:aJ$
+
+Best regards.
+```
+So we used that user/pass combination on route `/phpmyadmin` to access the DB
