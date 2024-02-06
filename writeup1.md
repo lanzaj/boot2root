@@ -214,4 +214,8 @@ password : Publicspeakingisveryeasy.126241207201b2149opekmq426135
 - 3 - Same for the 3rd phase, there are several possibilities to pass the phase while complying with the hint, good thing the first one we tried was the right one...
 
 ## 8 - Thor's turtle challenge
-- Here we have another `README` that basically tell us that solving this challenge will give us zaz's password, and a program called `turtle` that prints hundreds of instructions to... move a turtle ?
+- Here we have another `README` that basically tell us that solving this challenge will give us zaz's password, and a text file called `turtle` that contains hundreds of instructions to... move a turtle ?
+
+- So with the help of our good friend chatGPT we made a python script to draw the turtle's trajectory from the instruction file (check in resources folder), and saw the letters "SLASH" appear on the screen.
+
+- At the end of the file, there's a hint saying `Can you digest the message? :)` which made us understand that we had to give the string "SLASH" to MD5 (Message Digest 5) hashing algo. Here' zaz password : `646da671ca01bb5d84dbb5fb2238dc8e`
