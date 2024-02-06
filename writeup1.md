@@ -203,7 +203,7 @@ Congratulations! You've defused the bomb!
 ```
 - By combining all these passwords in a single string, we were able to login as thor:
 ```
-$ ssh thor@192.168.56.4 -p 22
+$ ssh thor@192.168.56.3 -p 22
 password : Publicspeakingisveryeasy.126241207201b2149opekmq426135
 ```
 
