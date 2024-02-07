@@ -183,7 +183,7 @@ o
 
 NO SPACE IN THE PASSWORD (password is case sensitive).
 ```
-- ...and a binary executable called `bomb` which asks us to resolve 6 problems which we got through by decompiling the program with hex-rays and trying to understand the 6 steps to give a correct input that would defuse the bomb and correspond to the 6 hints given in the readme. Please check `resources` folder to see an approximate version of the decompiled program as well as our solver for phase 5. For phase 6, we also used chatGPT's help by asking it which set of numbers would satisfy the requirements of the function... Here's our final result :
+- ...and a binary executable called `bomb` which asks us to resolve 6 problems which we got through by decompiling the program with hex-rays and trying to understand the 6 steps to give a correct input that would defuse the bomb and correspond to the 6 hints given in the readme. Please check `resources` folder to see an approximate version of the decompiled program as well as our solver for phase 5, and a bruteForce solver for phase 6. Here's our final result :
 ```
 laurie@BornToSecHackMe:~$ ./bomb 
 Welcome this is my little bomb !!!! You have 6 stages with

@@ -14,7 +14,7 @@ Linux BornToSecHackMe 3.2.0-91-generic-pae #129-Ubuntu SMP Wed Sep 9 11:27:47 UT
 
 - We can notice that the kernel version 3.2.0 is pretty old and subject to some security breaches, one of the most famous being the dirty cow exploit.
 
-- This exploit creates a race condition between system calls `write` and `madvise` that basically allow a user to write in files which are normally readable only.
+- This exploit creates a race condition between system calls `write` and `madvise` that basically allow a user to write in files which are normally readable only. More info there: https://www.cs.toronto.edu/~arnold/427/18s/427_18S/indepth/dirty-cow/demo.html
 
 - On a GNU/linux system, the root user is defined by its user ID of 0, and the list of users with their user ID is accessible in the read only file `/etc/passwd`. Here's the original content of this file:
 
