@@ -112,4 +112,6 @@ README
 zaz@BornToSecHackMe:/root# cat README 
 CONGRATULATIONS !!!!
 To be continued...
+zaz@BornToSecHackMe:/root# id
+uid=0(zaz) gid=0(root) groups=0(root)
 ```
