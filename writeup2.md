@@ -61,7 +61,7 @@ postfix:x:110:118::/var/spool/postfix:/bin/false
 
 - So the idea is to use this dirtycow exploit to modify that file and make it so one of the users, for instance zaz, gets a user ID of 0 and is considered root by the system.
 
-- We found online a little c program that does just that, by using thread in loops in order to provoke the data race situation needed to overwrite the read only file `/etc/passwd` (see `dirty.c` in `resources` folder, compile with `gcc -pthread dirty.c -o dirty -lcrypt`)
+- We found online a little c program that does just that, by using thread in loops in order to provoke the data race situation needed to overwrite the read only file `/etc/passwd` (see `dirty.c` in `scripts` folder, compile with `gcc -pthread dirty.c -o dirty -lcrypt`)
 
 - After running this program, if everything went well (which it doesn't systematically do, sometimes it doesn't write its line properly to `/etc/passwd`), our zaz user now has a user ID of 0 and will therefore be considered root by the system, giving it all privileges. Here's the updated version of `/etc/passwd` :
 ```
